@@ -1,0 +1,10 @@
+.product-item{
+    height: 370px;
+    background-color: #dee3e9;
+    position: relative;
+    padding: 5px;
+    text-align: center;
+    border-radius: .5rem;
+    border: 1px solid;
+    border-color: #28a745;
+}

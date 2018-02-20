@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="btn-group" data-toggle="buttons">
+	<a href="/" class="btn btn-success btn-lg active">Проекты</a>
+	<a href="/sip" class="btn btn-success btn-lg">СИП панели</a>
+	<a href="/" class="btn btn-success btn-lg">Теплые крыши, перекрытия для домой из камня и дерева <span class="badge badge-secondary">New</span></a>
+	<a href="/" class="btn btn-success btn-lg">Отзывы</a>
+	<a href="/" class="btn btn-success btn-lg">Контакты</a>
+</div>
+
+
+
+
+
+<div class="jumbotron">
+			<div class="middle" style="min-height: 50px;">
+				<div class="left" style="width: 25%;min-height: 50px;float: left;">
+					<div class="search"  style='width: 234px; height: 38px; margin: 6px 0px 0px 0px; background: #fff; border-radius: 4px; position: relative;'>
+						<form action='/' method='post'>
+								<input id='searchText' type='text' autocomplete='off' data-row='0' name='search' value='' placeholder='Поиск по сайту' style='width: 180px; height: 38px; padding: 0px 15px; background: none; border: 0px; font-size: 14px;' required />
+								<input type='submit' name='search_btn' value='' style='width: 15px; height: 15px; background: url(http://villozi.com/theme/villozi/images/search.png) top center no-repeat; position: absolute; top:12px; right: 15px; cursor: pointer; border: 0px;' />
+						</form>
+						<div class='mainSearchRes'>
+							<div class='mainSearchResBox'></div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="right" style="margin-right: 0px;width: 75%;min-height: 50px;float: right;">
+					<div id='topcat' style='width: 738px; height: 38px; margin: 6px 0px 0px 0px; background: url(http://villozi.com/theme/villozi/images/topm.png) top center repeat-x; border-radius: 4px; border-top: 1px solid #ccc; border-left: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc;'>
+						<div class='subcat' data-i='0' id='scategoryaction' style='float: left; height: 38px; width: 146px; border-radius: 4px 0px 0px 4px; border-right: 1px solid #d4d4d4; text-align: center; padding-top: 7px; color: #6C9E1A; cursor: pointer'>Акции</div>
+						<div class='subcat' id='scategory40' data-i='40' style='float: left; height: 38px; width: 146px; border-radius: 4px 0px 0px 4px; border-right: 1px solid #d4d4d4; text-align: center; padding-top: 7px; color: #6C9E1A; cursor: pointer'>до 100 м.кв.</div>
+						<div class='subcat' id='spcategory41' data-i='41' style='float: left; height: 38px; width: 146px; border-right: 1px solid #d4d4d4; border-left: 1px solid #fff; text-align: center; padding-top: 7px; color: #6C9E1A; cursor: pointer'>100 - 150 м.кв.</div>
+						<div class='subcat' id='scategory42' data-i='42' style='float: left; height: 38px; width: 146px; border-right: 1px solid #d4d4d4; border-left: 1px solid #fff; text-align: center; padding-top: 7px; color: #6C9E1A; cursor: pointer'>от 150 м.кв.</div>
+						<div class='subcat' id='scategoryall' data-i='all' style='float: left; height: 38px; width: 146px; border-radius: 0px 4px 4px 0px; border-left: 1px solid #fff; text-align: center; padding-top: 7px; color: #6C9E1A; cursor: pointer'>Все проекты</div>
+						<div style='clear: both'></div>
+					</div>
+				</div>
+			</div>
+	<div class="section">
+		<div class="jumbotron">
+			<div class="row">
+				{% for product_image in products_images %}
+					<div class="col-lg-4" style="padding: 15px;">
+						<div class="product-item">
+							<h4 style="color: #28a745">{{ product_image.product.name }} </h4>
+							<div>
+								<img src="{{ product_image.image.url }}" class="img-responsive" style="width: 270px; height: 209px;">
+							</div>
+							<p style="margin-bottom: 5px;"> {{ product_image.product.description|truncatechars_html:20 }}</p>
+							<div>
+								<h5 style="color: #3570b0">{{ product_image.product.price }} RUB</h5>
+							</div>
+							<div class="add-to_cart_btn">
+								<button class="btn btn-success">
+									Добавить в корзину
+								</button>
+							</div>
+						</div>
+
+					</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+			<form action="" method="post" class="form-inline text-center">{% csrf_token %}
+				<div class="form-group">
+					<label>Ваш email:</label>
+					<input type="email" name="form.email.name" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Ваше имя:</label>
+					<input type="text" name="form.name.name" class="form-control">
+				</div>
+					<button type="submit" class="btn btn-primary">Отправить</button>
+			</form>
+
+		</div>
+{% endblock content %}
